@@ -8,21 +8,21 @@
     <link href='https://fonts.googleapis.com/css?family=Fjalla One' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Saira Condensed' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Russo One' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">		
 
     <style>
-        
         body{
-            background-color: black;
+            background-color: rgb(0, 0, 0);
         }
         .loginCntnt{
             display: flex;
             margin-top: 12%;
-            margin-left: 12%;
+            margin-left: 10%;
         }
         .loginPge{
             background-color: rgb(7, 141, 175);
             width: 400px;
-            height: 300px;
+            height: 350px;
         }
         .loginTtle{
             font-family:'Fjalla One';
@@ -80,27 +80,33 @@
             color: black;
         }
 
-        
         .signup{
             margin-left: 43%;
             margin-top: 1%;
         }
+
+        .loginPicture{
+            width: 550px;
+            height: 350px;
+        }
+
     </style>
 
 </head>
 <body>
     <div class="loginCntnt">
         <div class="loginImage">
-            <img src="loginImge1.png" alt="Car resale value" style="width: 550px;height:300px;">
+            <img class="loginPicture" src="{{loginpic}}" alt="loginimg">
         </div>
         <div class="loginPge">
             <h2 class="loginTtle">LOGIN</h2>
-            <form class="loginForm">
-                <input type="text" id="usrname" placeholder="user name" required ><br>
-                <input type="password" id="password" placeholder="password" required><br>
+            <form action="{{ url_for('login') }}" class="loginForm" method="POST">
+                <input type="text" name="usrname" id="usrname" placeholder="user name" required ><br>
+                <input type="password" name="password" id="password" placeholder="password" required><br>
+                <p id="ErrorMsg">{{errorMsg}}</p>
                 <button type="submit">LOGIN</button>
             </form>
-            <h4 class="signup"><a href="register.html">Sign up</a></h4>
+            <h4 class="signup"><a href="{{url_for('register')}}">Sign up</a></h4>
         </div>
     </div>
 </body>

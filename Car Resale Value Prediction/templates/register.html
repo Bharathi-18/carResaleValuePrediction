@@ -17,7 +17,7 @@
         .rgstrCntnt{
             display: flex;
             margin-top: 12%;
-            margin-left: 12%;
+            margin-left: 10%;
         }
         .rgstrPge{
             background-color: rgb(7, 141, 175);
@@ -95,12 +95,14 @@
         <div class="rgstrPge">
             <h2 class="rgstrTtle">REGISTER</h2>
             <form class="rgstrForm">
-                <input type="text" id="usrname" placeholder="user name" required ><br>
+                <input type="text" id="usrname" placeholder="user name" required><br>
+                <input type="email" id="email" placeholder="example@gmail.com" required><br>
                 <input type="password" id="password" placeholder="password" required><br>
                 <input type="password" id="password" placeholder="retype-password" required><br>
+                <p id="ErrorMsg">{{errorMsg}}</p>
                 <button type="submit">REGISTER</button>
             </form>
-            <h4 class="signin"><a href="login.html">Sign in</a></h4>
+            <h4 class="signin"><a href="{{url_for('login')}}">Sign in</a></h4>
         </div>
     </div>
 </body>
