@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href='https://fonts.googleapis.com/css?family=Fjalla One' rel='stylesheet'>
@@ -17,7 +19,7 @@
         .loginCntnt{
             display: flex;
             margin-top: 12%;
-            margin-left: 10%;
+            margin-left: 20%;
         }
         .loginPge{
             background-color: rgb(7, 141, 175);
@@ -36,7 +38,6 @@
             position:relative;
             padding: 10px;
         }
-
         .loginForm input{
             width: 50%;
             height:35px;
@@ -59,9 +60,10 @@
         }
 
         .loginForm button{
-            margin-left: 36%;
+            margin-left: 40%;
             margin-top: 10%;
-            width: 100px;
+            /* width: 150px; */
+            width: fit-content;
             height:30px;
             border-radius: 10px;
             border-color: transparent;
@@ -81,14 +83,52 @@
         }
 
         .signup{
-            margin-left: 43%;
+            margin-left: 40%;
             margin-top: 1%;
+            font-family: 'Russo One';
+            color: rgb(0, 0, 0);
+            width: fit-content;
         }
 
         .loginPicture{
             width: 550px;
             height: 350px;
         }
+
+        #ErrorMsg{
+            margin-left: 14%;    
+
+        }
+        @media only screen and (max-width: 900px) {
+            .loginPicture{
+                width: 500px;
+                height: 350px;
+                transition: 0.5s;
+            }
+            .loginCntnt {
+                flex-direction: column;
+            }
+            .loginPge{
+                margin-left: 12%;
+            }
+
+        }
+        @media only screen and (max-width: 890px) {
+            .loginPge{
+                margin-left: 0.1%;
+                width: 500px;
+                transition: 0.9s;
+            }
+        }
+        @media only screen and (max-width: 500px) {
+            .loginPge{
+                margin-left: 15%;
+                width: 380px;
+                transition: 0.8s;
+            }
+        }
+
+
 
     </style>
 
@@ -105,8 +145,9 @@
                 <input type="password" name="password" id="password" placeholder="password" required><br>
                 <p id="ErrorMsg">{{errorMsg}}</p>
                 <button type="submit">LOGIN</button>
-            </form>
-            <h4 class="signup"><a href="{{url_for('register')}}">Sign up</a></h4>
+            </form>                
+            <!-- <button class="signup" onclick="{{url_for('register')}}">Sign up</button> -->
+            <h4 ><a class="signup" href="{{url_for('register')}}">Sign up</a></h4>
         </div>
     </div>
 </body>

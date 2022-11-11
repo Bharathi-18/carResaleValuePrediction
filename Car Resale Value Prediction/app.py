@@ -12,7 +12,6 @@ conn = ibm_db.connect("DATABASE=bludb;HOSTNAME=0c77d6f2-5da9-48a9-81f8-86b520b87
 picFolder = os.path.join('static','pics')
 app.config['UPLOAD_FOLDER'] = picFolder
 
-
 @app.route("/dashboard")
 def dashboard():
 	dashboardPic = os.path.join(app.config['UPLOAD_FOLDER'],'dashboard.jpg')
@@ -26,7 +25,7 @@ def login():
 	if request.method == 'POST' and 'usrname' in request.form and 'password' in request.form:
 		username = request.form['usrname']
 		password = request.form['password']
-		sql = "SELECT * FROM account WHERE ID = '"+username+"' or Name = '"+username+"' AND pass = '"+password+"'"
+		sql = "SELECT * FROM account WHERE ID = '"+username+"' AND pass = '"+password+"'"
 		stmt = ibm_db.exec_immediate(conn, sql)
 		account = ibm_db.fetch_both(stmt)
 		if account:
@@ -49,11 +48,12 @@ def logout():
 @app.route('/register', methods =['GET', 'POST'])
 def register():
 	msg = ''
+	registerImg = os.path.join(app.config['UPLOAD_FOLDER'],'loginImge1.png')
 	if request.method == 'POST' and 'usrname' in request.form and 'password' in request.form and 'email' in request.form :
 		username = request.form['usrname']
 		password = request.form['password']
 		email = request.form['email']
-		sql = "SELECT * FROM account WHERE ID = '"+username+"' or Name = '"+username+"'"
+		sql = "SELECT * FROM account WHERE ID = '"+username+"'"
 		stmt = ibm_db.exec_immediate(conn, sql)
 		account = ibm_db.fetch_both(stmt)
 
@@ -71,5 +71,8 @@ def register():
 			ibm_db.execute(prep_stmt)
 			msg = 'You have successfully registered !'
 	elif request.method == 'POST':
-		msg = 'Please fill out the form !'
-	return render_template('register.html', errorMsg = msg)
+		msg = 'Please fill out form !'
+	return render_template('register.html', errorMsg = msg,registerImg=registerImg)
+
+if __name__ == '__main__':
+	app.run()
