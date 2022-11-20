@@ -107,6 +107,7 @@
             <div class="introTxt">
                 <h2>Tell Us about your car</h2>
             </div>    
+            <button><a href="{{url_for('login')}}" style="text-decoration: none;">LOGOUT</a></button>
         </div>
         <h3 class="predictionText">{{ prediction_text }}</h3>
         <form action="{{url_for('predict')}}" method="POST">
